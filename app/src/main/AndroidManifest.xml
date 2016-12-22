@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tp.koreatech.mpalarm">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.tp.koreatech.mpalarm_1.AlarmActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.tp.koreatech.mpalarm_1.AlarmPreferencesActivity"
+            android:label="예약설정"
+            android:parentActivityName="com.tp.koreatech.mpalarm_1.AlarmActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tp.koreatech.mpalarm_1.AlarmActivity" />
+        </activity>
+
+        <service
+            android:process="com.tp.koreatech.mpalarm.serviceProcess"
+            android:name="com.tp.koreatech.mpalarm_1.AlarmService"
+            android:label="@string/app_name"
+            >
+        </service>
+
+        <service
+            android:process="com.tp.koreatech.mpalarm.serviceProcess"
+            android:name="com.tp.koreatech.mpalarm_1.AlarmSensorService"
+            android:label="@string/app_name"
+            >
+        </service>
+
+        <receiver android:name="com.tp.koreatech.mpalarm_1.AlarmServiceBroadcastReciever" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name = "com.tp.koreatech.mpalarm_1.AlarmAlertActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+        <receiver android:name="com.tp.koreatech.mpalarm_1.AlarmAlertBroadcastReciever" >
+        </receiver>
+
+
+    </application>
+
+</manifest>
